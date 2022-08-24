@@ -1,0 +1,24 @@
+<?php 
+class Carrito {
+	private $db;
+
+	function __construct($base) {
+		$this->db = $base;
+	}
+
+	public function insertarCompra($codigo, $producto, $descripcion, $precio) {
+		$respuesta = $this->db->sendData("INSERT INTO productos VALUES($codigo,'$producto','$descripcion',$precio)");
+		return $respuesta; 
+	}
+
+	public function ListarProductos(){
+		$respuesta = $this->db->sendData("SELECT * FROM compras");
+		return $respuesta;
+	}	
+
+	public function eliminarCompra($codigo){
+		$respuesta = $this->db->sendData("DELETE FROM productos WHERE codigo = $codigo");
+		return $respuesta;
+	}
+}
+?>
